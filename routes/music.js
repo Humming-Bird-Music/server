@@ -12,7 +12,7 @@ Router.use(authentication)
 Router.post('/', multer.single('music'), gcs, MusicController.create)
 
 Router.use('/:id', authorization)
-Router.put('/:id', multer.single('music'), gcs, MusicController.update)
+Router.put('/:id', MusicController.update)
 Router.delete('/:id', MusicController.delete)
 
 module.exports = Router;

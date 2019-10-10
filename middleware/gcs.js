@@ -14,10 +14,7 @@ const getPublicUrl = (filename) => {
 
 module.exports = (req, res, next) => {
     if (!req.file) {
-        return next({
-            status: 400,
-            message: 'Please Upload new Music'
-        })
+        return next()
     } else if (!req.file.mimetype.includes('mpeg')) {
         return next({
             status: 406,
