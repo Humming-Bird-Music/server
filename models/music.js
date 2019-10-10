@@ -3,15 +3,19 @@ const Schema = mongoose.Schema
 
 const musicSchema = new Schema({
   "title": {
-    "type": "String"
+    "type": "String",
+    default: "Unknown Music Title"
   },
   "artist": {
-    "type": "String"
+    "type": "String",
+    default: "Unknown Music Artist"
   },
   "album": {
-    "type": "String"
+    "type": "String",
+    default: "Unknown Music Album"
   },
-  url: String
+  url: String,
+  owner: {type: Schema.Types.ObjectId, ref: "Users"}
 }, { timestamps: true })
 
 const Music = mongoose.model('Musics', musicSchema)

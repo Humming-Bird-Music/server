@@ -4,6 +4,7 @@ const Music = require('../models/music');
 class MusicController {
     static create(req, res, next) {
         const { title, artist, album } = req.body
+        const url = req.file.cloudStoragePublicUrl
         Music.create({ title, artist, album })
             .then((music) => {
                 res.status(201).json(music)
