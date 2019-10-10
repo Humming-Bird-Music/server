@@ -19,5 +19,5 @@ module.exports = (err, req, res, next) => {
             message = err.message || err.msg || 'Internal Server Error'
             break;
     }
-    res.status(status).json(message)
+    res.status(status).json({ code: status, message })
 }
