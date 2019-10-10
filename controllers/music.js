@@ -26,14 +26,8 @@ class MusicController {
     static update(req, res, next) {
         const id = req.params.id
         const { title, artist, album } = req.body
-        const url = req.file.cloudStoragePublicUrl
         let up = { title, artist, album }
-        if (url) up.url = url
-        Music.findById(id)
-            .then(result => {
-                if (url) gcsDelete(result.url)
-                return Music.findByIdAndUpdate(id, { $set: up }, { runValidators: true, new: true })
-            })
+        Music.findByIdAndUpdate(id, { $set: up }, { runValidators: true, new: true })
             .then((music) => {
                 res.status(200).json(music)
             }).catch(next);
