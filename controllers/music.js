@@ -7,7 +7,7 @@ class MusicController {
         const { title, artist, album } = req.body
         const id = req.decode.id
         const url = req.file.cloudStoragePublicUrl
-        Music.create({ title, artist, album, url, owner: id})
+        Music.create({ title, artist, album, url, owner: id })
             .then((music) => {
                 res.status(201).json(music)
             })

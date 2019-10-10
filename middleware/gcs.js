@@ -13,7 +13,6 @@ const getPublicUrl = (filename) => {
 }
 
 module.exports = (req, res, next) => {
-    console.log('============ Masuk ============');
     if (!req.file) {
         return next({
             status: 400,
@@ -26,10 +25,8 @@ module.exports = (req, res, next) => {
         })
     }
 
-    console.log('============ gcs ============');
 
     const gcsname = Date.now() + req.file.originalname
-    console.log(`============ ${gcsname} ============`);
     const file = bucket.file(gcsname)
 
 

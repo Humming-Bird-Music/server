@@ -1,14 +1,14 @@
 const { Storage } = require('@google-cloud/storage')
 
-const CLOUD_STORAGE =process.env.CLOUD_BUCKET
+const CLOUD_BUCKET = process.env.CLOUD_BUCKET
 
 const storage = new Storage({
     projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
     keyFilename: process.env.GOOGLE_CLOUD_KEYFILE
 })
 
-async function deleteFileFromGCS(url){
-    if(!url) return 
+async function deleteFileFromGCS(url) {
+    if (!url) return
     let filename = url.split('/').pop()
     try {
         await storage
@@ -16,7 +16,7 @@ async function deleteFileFromGCS(url){
             .file(filename)
             .delete()
     }
-    catch (err){
+    catch (err) {
         throw err
     }
 }
