@@ -13,20 +13,25 @@ const getPublicUrl = (filename) => {
 }
 
 module.exports = (req, res, next) => {
-    if(!req.file){
+    console.log('============ Masuk ============');
+    if (!req.file) {
         return next({
             status: 400,
             message: 'Please Upload new Music'
         })
-    } else if (!req.file.mimetype.includes('mpeg')){
+    } else if (!req.file.mimetype.includes('mpeg')) {
         return next({
             status: 406,
-            message: 'File must be an image'
+            message: 'File must be a muisc'
         })
     }
 
+    console.log('============ gcs ============');
+
     const gcsname = Date.now() + req.file.originalname
+    console.log(`============ ${gcsname} ============`);
     const file = bucket.file(gcsname)
+
 
     const stream = file.createWriteStream({
         metadata: {

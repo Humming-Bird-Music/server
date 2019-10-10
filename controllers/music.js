@@ -5,7 +5,7 @@ class MusicController {
     static create(req, res, next) {
         const { title, artist, album } = req.body
         const url = req.file.cloudStoragePublicUrl
-        Music.create({ title, artist, album })
+        Music.create({ title, artist, album, url })
             .then((music) => {
                 res.status(201).json(music)
             })
