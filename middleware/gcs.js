@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
     }
 
 
-    const gcsname = Date.now() + req.file.originalname
+    const gcsname = Date.now() + '_' + req.file.originalname.replace(/\s/gi, '_')
     const file = bucket.file(gcsname)
 
 
