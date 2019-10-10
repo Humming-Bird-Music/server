@@ -1,9 +1,9 @@
-const music = require('../models/music')
+const Music = require('../models/music')
 
 module.exports = (req, res, next) => {
     const musicId = req.params.id
     const userId = req.decode.id
-    music.findById(musicId)
+    Music.findById(musicId)
         .then((music) => {
             if (music) {
                 if (music.owner == userId) {
