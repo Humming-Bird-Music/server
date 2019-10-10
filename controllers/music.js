@@ -16,7 +16,7 @@ class MusicController {
     static read(req, res, next) {
         let where = query(req.query)
         Music.find(where)
-            .populate("owner")
+            .populate("owner", "-password")
             .then((musics) => {
                 res.status(200).json(musics)
             })
