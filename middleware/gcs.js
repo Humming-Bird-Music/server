@@ -15,7 +15,7 @@ const getPublicUrl = (filename) => {
 module.exports = (req, res, next) => {
     if (!req.file) {
         return next()
-    } else if (!req.file.mimetype.includes('mpeg')) {
+    } else if (!req.file.mimetype.includes('audio')) {
         return next({
             status: 406,
             message: 'File must be a muisc'

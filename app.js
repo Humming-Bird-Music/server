@@ -9,7 +9,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     environment = NODE_ENV ? "-" + NODE_ENV : "",
     db = "HummingBird",
-    url = NODE_ENV ? "mongodb://localhost:27017/" + db + environment : process.env.MONGO_DB,
+    url = process.env.MONGO_DB,
     port = process.env.PORT,
     route = require('./routes'),
     errorHandler = require('./middleware/errorHandler'),
@@ -21,7 +21,8 @@ app.use(express.json());
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(() => {
-        console.log("Connected to MongoDB " + db + environment)
+        console.log("Connected to MongoDB " + db)
+        console.log(url)
     }).catch((err) => {
         console.log(err);
         console.log("Failed to connect to MongoDB");
@@ -34,4 +35,3 @@ app.use('/', route)
 app.use(errorHandler)
 
 app.listen(port, () => console.log('Listening on port: ' + port))
-    
