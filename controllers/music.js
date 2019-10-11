@@ -24,6 +24,15 @@ class MusicController {
             .catch(next);
     };
 
+    static readOwner(req, res, next) {
+        const userId = req.decode.id
+        Music.find({ owner: userId })
+            .then((musics) => {
+                res.status(200).json(musics)
+            })
+            .catch(next);
+    }
+
     static update(req, res, next) {
         const id = req.params.id
         const { title, artist, album } = req.body

@@ -10,6 +10,7 @@ Router.get('/', MusicController.read)
 
 Router.use(authentication)
 Router.post('/', multer.single('music'), gcs, MusicController.create)
+Router.get('/user', MusicController.readOwner)
 
 Router.use('/:id', authorization)
 Router.put('/:id', MusicController.update)
